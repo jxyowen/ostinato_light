@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'ostinato_light',
-    version = '0.1.6',
+    version = '0.1.7',
     keywords = ('wrapper', 'ostinato'),
     description = 'use ostinato in a more elegant way, python3 is incompatible',
     license = 'MIT License',
