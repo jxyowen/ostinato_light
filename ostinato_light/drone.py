@@ -35,17 +35,26 @@ class Drone():
         self.__drone.modifyStream(stream_list.all_streams_configurations)
         return self
 
+    def remove_stream_list(self, stream_id_list):
+        self.__drone.deleteStream(stream_id_list)
+        return self
+
     def remove_current_stream_list(self):
         assert(self.current_stream_list)
         self.__drone.deleteStream(self.current_stream_list.all_streams)
         return self
 
-    def get_port_id_list(self):
+    def fetch_stream_id_list(self):
+        assert(self.__tx_port_list)
+        stream_id_list = self.__drone.getStreamIdList(self.__tx_port_list.port_id[0])
+        return stream_id_list
+
+    def fetch_port_id_list(self):
         port_id_list = self.__drone.getPortIdList()
         return port_id_list
 
     def get_port_config_list(self):
-        port_config_list = self.__drone.getPortConfig(self.get_port_id_list())
+        port_config_list = self.__drone.getPortConfig(self.fetch_port_id_list())
         return port_config_list
 
     def start_transmit(self):
